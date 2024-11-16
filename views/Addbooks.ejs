@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add a book</title>
+  </head>
+  <body style="background-color: rgb(68, 66, 66);">
+    <% if (locals.error ){%> <% error.forEach((curr)=>{ %>
+    <p>curr</p>
+    <% }) %> <% } %>
+  
+    <form action="/books/<%= locals.update ? "update" : "add" %>" method="post">
+      <label for="name">Title of Book:</label>
+      <input type="text" id="name" name="name" required value="<%= typeof fetchedItem !== 'undefined' ? fetchedItem.name : null %>"/>
+      <label for="publish_date">Publish date:</label>
+      
+      <input type="date" id="publish_date" name="publish_date" value="<%= typeof date !== 'undefined' ? date : null %>" />
+      <label for="author">Author:</label>
+      <input name="id" type="text" style="display: none;" value="<%= typeof fetchedItem !== 'undefined' ? fetchedItem.id : null %>">
+      <select name="author" id="author" required >
+       
+<% if (typeof data !== 'undefined') { %>
+  <% console.log("yup.....") %>
+  <% data.Authors.forEach((curr)=>{ %>
+    <% console.log("this runs") %>
+  <option value="<%= curr.name %>"><%= curr.name %></option>
+  <% }) %>
+<% } else { %>
+  <option value="<%= fetchedItem.author %>"><%= fetchedItem.author %></option>
+<% } %>
+      
+       
+  
+   
+      </select>
+  
+      <label for="genre">Genre:</label>
+      <select name="genre" id="genre" required>
+        <% if (typeof data !== 'undefined') { %>
+          <% data.Genres.forEach((curr)=>{ %>
+            <option value="<%= curr.name  %>"><%= curr.name %></option>
+            <% })%>
+        <% }  else {%>
+          <option value="<%= fetchedItem.genre %>"><%= fetchedItem.genre %></option>
+        <% }  %>       
+      </select>
+      <label for="rating">Rating</label>
+      <input type="number" name="rating" step="0.1" id="rating" max="5" min="1" value="<%= typeof fetchedItem !== 'undefined' ? fetchedItem.rating : null %>"/>
+      <label for="description">Summary:</label>
+      <textarea name="description" id="description" ><%= typeof fetchedItem !== 'undefined' ? fetchedItem.description : null %></textarea>
+      <button type="submit">Submit</button>
+    </form>
+  </body>
+</html>

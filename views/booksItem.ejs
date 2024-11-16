@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <% console.log(data,"HELLO") %>
+    <title><%= data[0].name %></title>
+  </head>
+  <body>
+
+    <h1><%= data[0].name %></h1>
+    <p>Published <%= data[0].publish_date %></p>
+    <p>rating: <%= data[0].rating %></p>
+    <p>
+      Author :
+      <a href="/authors/<%= data[0].author_id %>"><%= data[0].author %></a>
+    </p>
+    <h2>Description</h2>
+    <p><%= data[0].description %></p>
+    <a href="/edit/books/<%= data[0].id %>">Edit stuff</a> <br>
+    <a href="/">Main page</a>
+  </body>
+</html>

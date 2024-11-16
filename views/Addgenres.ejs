@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add a genre</title>
+  </head>
+  <body>
+    <% let dummyData = "" ; %> 
+    <% console.log(locals.fetchedItem,"FFETCHED") %>
+    <% if (locals.fetchedItem !== undefined){ dummyData = fetchedItem.name %>
+     <%} %> <% if (locals.error){%>
+    <!-- dont remove... bad things will happen... -->
+    <% error.forEach((curr)=>{ %>
+    <p>curr</p>
+    <% }) %> <% } %>
+    <form action="/genres/<%= typeof update !== 'undefined' ? "update" : "add" %>" method="POST">
+      <label for="name"> Name of Genre </label>
+<input name="id" type="text" style="display: none;" value="<%= typeof fetchedItem !== 'undefined' ? fetchedItem : null %>">
+      <input type="text" name="name" id="name" required value= <%- locals.fetchedItem ? locals.fetchedItem : "" %> >
+      <button type="submit">Submit</button>
+    </form>
+  </body>
+</html>

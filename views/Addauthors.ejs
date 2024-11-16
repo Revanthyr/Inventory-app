@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add an Author</title>
+  </head>
+  <body>
+    <% if (locals.error){%> <% error.forEach((curr)=>{ %>
+    <p>curr</p>
+    <% }) %> <% } %>
+
+  <% console.log(locals.update) %>
+    <form action="/authors/<%= typeof update !== 'undefined' ? "update" : "add" %>" method="POST">
+      <label for="name">Name of author:</label>
+      <input type="text" id="name" name="name" required value="<%= typeof fetchedItem !== 'undefined' ? fetchedItem.name : null %>"/>
+      <label for="birth_date">Date of birth (optional) : </label>
+      <input type="date" id="birth_date" name="birth_date" value="<%= typeof fetchedItem !== 'undefined' && fetchedItem.birth_date  ? fetchedItem.birth_date.split("/").reverse().join("-") : null %>"/>
+     <input  name="id" type="text" value="<%= typeof fetchedItem !== 'undefined' ? fetchedItem.author_id :null%>" style="display: none;">
+      <button type="submit">Submit</button>
+    </form>
+  </body>
+</html>

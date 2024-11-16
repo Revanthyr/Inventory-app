@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Books</title>
+  </head>
+  <body>
+    <h1>Here are all the books:</h1>
+
+    <% data.forEach((curr)=>{ %>
+    <div style="display:flex;flex-direction: row;">
+      <div>
+      <h2><a href="/books/<%= curr.id %>"><%= curr.title %></a></h2>
+      <ul>
+        <li>Published <%= curr.publish_date %></li>
+        <li>Rating :<%= curr.rating %></li>
+        <li>Author :<%= curr.name%></li>
+      </ul>
+      </div>
+      <form action="/books/delete/<%= curr.id %>" method="post"><button>Delete</button></form>
+    </div>
+    <%}) %>
+    <a href="/books/add">add book</a>
+    <br />
+    <a href="/">Back to main page</a>
+  </body>
+</html>

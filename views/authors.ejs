@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Authors</title>
+  </head>
+  <body style="background-color: rgb(30, 32, 34)">
+    <h1>Here are all the authors:</h1>
+
+    <% data.forEach((curr)=>{ %>
+    <div style="display:flex;flex-direction: row;">
+      <h2><a href="./authors/<%= curr.id %>"><%= curr.name %></a></h2>
+    <form action="/authors/delete/<%= curr.id  %>" method="post"><button>Delete</button></form>
+    
+    </div>
+    <%}) %>
+    <a href="/authors/add">Add a new Author to the Database</a>
+    <a href="/">Back to main page hello</a>
+  </body>
+</html>
