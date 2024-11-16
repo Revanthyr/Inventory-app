@@ -1,11 +1,16 @@
 const { Pool } = require("pg");
-console.log({
-  user: process.env.DATABASE_USER,
+const { Client } = require("pg");
 
-  host: process.env.DATABASE_HOST,
-  database: process.env.DATABASE_NAME,
+const pool = new Client({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false, // Allow self-signed certificates
+  },
 });
-const pool = new Pool({
+
+pool.connect();
+
+const a = new Pool({
   user: process.env.DATABASE_USER,
   password: process.env.DATABASE_PASSWORD,
   host: process.env.DATABASE_HOST,
