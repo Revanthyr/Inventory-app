@@ -64,7 +64,7 @@ async function main() {
     host: process.env.DATABASE_HOST,
     port: 5432,
     database: process.env.DATABASE_NAME,
-    ssl: "require",
+    ssl: true,
   });
   await client.connect();
   await client.query(SQL);
